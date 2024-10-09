@@ -5,6 +5,7 @@ let displayValue = "0";
 
 let btns = document.querySelectorAll("button");
 let result = document.querySelector(".result");
+let input = document.querySelector(".user-input");
 
 result.textContent = "0";
 
@@ -28,10 +29,6 @@ function handleButtonClick(value) {
       }
     }
 
-    if (value == '%'){
-      
-    }
-
     if (!isNaN(value)) {
       if (displayValue === "0") {
         displayValue = value;
@@ -39,17 +36,19 @@ function handleButtonClick(value) {
       } else {
         displayValue += value;
       }
-      console.log(displayValue.length);
       result.textContent = displayValue;
+      input.textContent += value;
     }
     if (value === '.') {
         if (!displayValue.includes('.')) {
             displayValue += value; 
-            result.textContent = displayValue; 
+            result.textContent = displayValue;
+            input.textContent += value; 
         }
         return; 
     }
-    if (value === "+" || value === "-" || value === "*" || value === "/") {
+    if (value === "+" || value === "-" || value === "*" || value === "/" || value === "%") {
+      input.textContent += ` ${value} `;
       if (firstNumber === null) {
         firstNumber = parseFloat(displayValue);
       } else if (operator !== null && displayValue !== "") {
@@ -65,8 +64,12 @@ function handleButtonClick(value) {
       secondNumber = parseFloat(displayValue);
       if (firstNumber !== null && operator !== null && secondNumber !== null) {
         let resultValue = operate(firstNumber, operator, secondNumber);
-        result.textContent = resultValue.toFixed(2);
-        displayValue = resultValue.toFixed(2).toString();
+        if (Number.isInteger(resultValue)) {
+          result.textContent = resultValue; 
+      } else {
+          result.textContent = resultValue.toFixed(2); 
+      }
+        displayValue = resultValue.toString();
         firstNumber = null;
         operator = null;
         secondNumber = null;
@@ -99,7 +102,8 @@ document.addEventListener("keydown", (event) => {
         '/': '/',
         'Enter': '=', 
         '=': '=', 
-        'Backspace': 'AC', 
+        'Backspace': 'C',
+        'Delete': 'AC',
 
     };
 
@@ -114,6 +118,7 @@ function resetCalculator() {
   secondNumber = null;
   displayValue = "0";
   result.textContent = displayValue;
+  input.textContent = '';
 }
 
 const add = function (a, b) {
@@ -132,6 +137,10 @@ const divide = function (a, b) {
   return a / b;
 };
 
+const module = function (a, b){
+  return a % b;
+};
+
 function operate(firstNumber, operator, secondNumber) {
   if (operator == "+") {
     return add(firstNumber, secondNumber);
@@ -141,5 +150,8 @@ function operate(firstNumber, operator, secondNumber) {
     return multiply(firstNumber, secondNumber);
   } else if (operator == "/") {
     return divide(firstNumber, secondNumber);
+  }
+  else if (operator == "%") {
+    return module(firstNumber, secondNumber);
   }
 }
