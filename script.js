@@ -23,7 +23,13 @@ btns.forEach((btn) => {
       }
       result.textContent = displayValue;
     }
-
+    if (value === '.') {
+        if (!displayValue.includes('.')) {
+            displayValue += value; 
+            result.textContent = displayValue; 
+        }
+        return; 
+    }
     if (value === "+" || value === "-" || value === "*" || value === "/") {
       if (firstNumber === null) {
         firstNumber = parseFloat(displayValue);
