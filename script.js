@@ -8,9 +8,12 @@ let result = document.querySelector(".result");
 
 result.textContent = "0";
 
-btns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const value = btn.textContent;
+function updateDisplay() {
+    result.textContent = displayValue;
+}
+
+
+function handleButtonClick(value) {
 
     if (value == "AC") {
       resetCalculator();
@@ -53,7 +56,39 @@ btns.forEach((btn) => {
         secondNumber = null;
       }
     }
-  });
+  }
+
+btns.forEach((btn) => {
+  btn.addEventListener("click", () => handleButtonClick(btn.textContent));
+});
+
+document.addEventListener("keydown", (event) => {
+    const key = event.key;
+
+    const keyMap =  {
+        '0': '0',
+        '1': '1',
+        '2': '2',
+        '3': '3',
+        '4': '4',
+        '5': '5',
+        '6': '6',
+        '7': '7',
+        '8': '8',
+        '9': '9',
+        '.': '.',
+        '+': '+',
+        '-': '-',
+        '*': '*',
+        '/': '/',
+        'Enter': '=', 
+        'Backspace': 'AC', 
+
+    };
+
+    if (keyMap[key]) {
+        handleButtonClick(keyMap[key]);
+    }
 });
 
 function resetCalculator() {
