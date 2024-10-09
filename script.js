@@ -82,6 +82,7 @@ document.addEventListener("keydown", (event) => {
         '*': '*',
         '/': '/',
         'Enter': '=', 
+        '=': '=', 
         'Backspace': 'AC', 
 
     };
