@@ -18,12 +18,28 @@ function handleButtonClick(value) {
     if (value == "AC") {
       resetCalculator();
     }
+    if (value == "C"){
+      if(displayValue.length == 1){
+        result.textContent = '0';
+      }
+      else if(displayValue.length >= 1){
+        displayValue = displayValue.slice(0, -1);
+        result.textContent = displayValue;
+      }
+    }
+
+    if (value == '%'){
+      
+    }
+
     if (!isNaN(value)) {
       if (displayValue === "0") {
         displayValue = value;
+        
       } else {
         displayValue += value;
       }
+      console.log(displayValue.length);
       result.textContent = displayValue;
     }
     if (value === '.') {
