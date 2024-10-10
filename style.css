@@ -2,6 +2,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
+    font-weight: bold;
 }
 
 button{
@@ -15,41 +16,51 @@ button{
 
 
 .container{
-    background-color: DimGray;
-    max-width: 250px;
+    background-color: black;
+    max-width: 265px;
     margin: 50px auto;
-    padding: 20px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    gap: 5px;
+    gap: 15px;
     border: 1px solid black;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .display{
-    background-color: lightGray;
     width: 215px;
     border: 4px solid black;
+    margin: 40px 0;
+    height: 70px;
 }
 
 .display .result {
     text-align: right;
     font-weight: bold;
     padding: 4px 10px;
-    font-size: 25px;
+    font-size: 38px;
+}
+
+.result{
+    color: white;
+}
+
+.user-input{
+    color: gray;
 }
 
 .user-input{
     text-align: right;
+    font-size: 18px;
     padding: 3px 10px;
 }
 
 .row{
     text-align: center;
     display: flex;
-    gap: 5px;
+    gap: 10px;
     justify-content: space-around;
 }
 
@@ -63,13 +74,16 @@ button{
 }
 
 .firstRow button:last-child, .secondRow button:last-child, .thirdRow button:last-child, .fourthRow button:last-child, .fifthRow button:last-child{
-    background-color: darkOrange;
+    background-color: #005DB2;
+    color: #B2DAFF;
 }
 
 .fifthRow button:first-child{
-    width: 105px;
+    width: 110px;
 }
 
 .secondRow button, .thirdRow button, .fourthRow button, .fifthRow button{
-    background-color: SeaGreen;
+    background-color: #303136;
+    color: #29A8FF;
+    font-size: 22px;
 }
